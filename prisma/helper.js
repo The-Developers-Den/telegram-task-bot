@@ -23,7 +23,30 @@ const findTasks = async (username) => {
   return tasks;
 };
 
+const updateTask = async (id, status) => {
+  const task = await prisma.task.update({
+    where: {
+      id,
+    },
+    data: {
+      status,
+    },
+  });
+  return task;
+};
+
+const deleteTask = async (id) => {
+  const task = await prisma.task.delete({
+    where: {
+      id,
+    },
+  });
+  return task;
+};
+
 module.exports = {
   addTask,
   findTasks,
+  updateTask,
+  deleteTask,
 };
